@@ -9,6 +9,7 @@ export default {
       'form-secondary-highlight': '#ffc8ff',
       'font-color': '#2A293E',
       'error-highlight': 'rgba(255, 0, 0, 0.9)',
+      'input-highlight': '#fff6af',
       button: '#000000',
       placeholder: '#fff',
     },
