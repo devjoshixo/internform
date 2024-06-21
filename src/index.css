@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg')
+    center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Fjalla One';
+  font-size: 14pt;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
