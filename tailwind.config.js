@@ -8,7 +8,9 @@ export default {
       'form-primary-highlight': '#95a4ff',
       'form-secondary-highlight': '#ffc8ff',
       'font-color': '#2A293E',
+      'error-highlight': 'rgba(255, 0, 0, 0.9)',
       button: '#000000',
+      placeholder: '#fff',
     },
     extend: {
       keyframes: {
