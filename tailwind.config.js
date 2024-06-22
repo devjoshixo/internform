@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/tailwind-datepicker-react/dist/**/*.js',
+  ],
   theme: {
     colors: {
       'form-bg': '#f8f4e5',
@@ -26,5 +30,4 @@ export default {
       },
     },
   },
-  plugins: [],
 };

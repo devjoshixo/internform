@@ -10,19 +10,21 @@ const useErrorHandler = (formDetails) => {
     let newError = {};
 
     if (formDetails.name.trim() == '') {
-      newError = { ...newError, name: true };
+      newError['name'] = true;
     }
-    if (!formDetails.age.isDigit && formDetails.age <= 0) {
-      newError = { ...newError, age: true };
+    if (!formDetails.phone.isDigit && formDetails.phone <= 0) {
+      newError['phone'] = true;
+    }
+    if (!formDetails.experience.isDigit && formDetails.phone <= 0) {
+      newError['experience'] = true;
     }
     if (formDetails.email.trim() == '' || !emailRegex.test(formDetails.email)) {
-      newError = { ...newError, email: true };
+      newError['email'] = true;
     }
-    if (ticked) {
-      if (formDetails.guest.trim() == '') {
-        newError = { ...newError, guest: true };
-      }
+    if (formDetails.role.trim() == '') {
+      newError['role'] = true;
     }
+    console.log(newError);
     setError((prevState) => {
       return { ...newError };
     });

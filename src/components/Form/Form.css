@@ -1,5 +1,12 @@
+.datepicker div input {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+/*  */
 .checkbox-wrapper-12 {
   position: relative;
+  color: rgba(75, 75, 75, 0.651);
 }
 .checkbox-wrapper-12 > svg {
   position: absolute;

@@ -1,33 +1,27 @@
 import FormContext from './FormContext';
-import react, { useState } from 'react';
+import react, { useState, useEffect } from 'react';
 
 const FormState = (props) => {
-  const [ticked, setTicked] = useState(false);
+  const [roleSelector, setRoleSelector] = useState({});
   const [formDetails, setFormDetails] = useState({
     name: '',
-    age: '',
+    phone: '',
     email: '',
-    guest: '',
+    role: '',
   });
 
-  //
-  ////Guest input toggler
-  const toggleTicked = () => {
-    setTicked((prevState) => {
-      setFormDetails((prev) => {
-        return { ...prev, guest: '' };
-      });
+  useEffect(() => {
+    if (formDetails.role.trim() == '') return;
 
-      return !prevState;
-    });
-  };
+    setRoleSelector({ [formDetails.role]: true });
+  }, [formDetails.role]);
 
   //
   ////State value update
   const changeFormDetails = (event) => {
     const name = event.target.getAttribute('name');
     setFormDetails((prevState) => {
-      if (name == 'age') {
+      if (name == 'phone') {
         if (!isNaN(event.target.value)) {
           return { ...prevState, [name]: event.target.value.trim() };
         } else return prevState;
@@ -38,7 +32,7 @@ const FormState = (props) => {
 
   return (
     <FormContext.Provider
-      value={{ ticked, formDetails, changeFormDetails, toggleTicked }}
+      value={{ roleSelector, formDetails, changeFormDetails }}
     >
       {props.children}
     </FormContext.Provider>
