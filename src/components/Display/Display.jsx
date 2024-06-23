@@ -8,7 +8,12 @@ const Display = () => {
       <h2 className='bg-input-highlight p-3'>Your form has been submitted</h2>
       <div className='flex flex-col w-full'>
         <label className='bg-input-highlight pl-2'>Name</label>
-        <input type='text' value={ctx.formDetails.name} disabled />
+        <input
+          type='text'
+          value={ctx.formDetails.name}
+          className='bg-form-shadow pl-2 border text-sm py-[2px]'
+          disabled
+        />
       </div>
       <div className='flex flex-col w-full'>
         <label className='bg-input-highlight pl-2'>Email</label>
