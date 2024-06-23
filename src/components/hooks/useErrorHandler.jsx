@@ -32,7 +32,7 @@ const useErrorHandler = (formDetails) => {
       if (error.manager) {
         flag = false;
       } else if (!error.manager) {
-        flag = false;
+        flag = true;
       }
     }
     let commonflag = true;
