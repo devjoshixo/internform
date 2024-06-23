@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <div className='w-3/4 pt-[5rem] h-full mx-auto flex justify-center items-center'>
+    <div className='w-3/4 mx-auto flex justify-center '>
       {formPage ? <Form setFormPage={setFormPage} /> : <Display />}
     </div>
   );

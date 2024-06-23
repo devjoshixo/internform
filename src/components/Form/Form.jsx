@@ -23,7 +23,7 @@ const form = (props) => {
   };
 
   return (
-    <div className='w-2/5 flex flex-col gap-6 items-center border-2 border-black bg-form-bg shadow-[15px_15px_1px,15px_15px_1px_2px_rgba(0,0,0,1)] shadow-form-shadow py-8 px-16'>
+    <div className='w-2/5 mt-9 flex flex-col gap-6 items-center border-2 border-black bg-form-bg shadow-[15px_15px_1px,15px_15px_1px_2px_rgba(0,0,0,1)] shadow-form-shadow py-8 px-16'>
       <h2>Fill your details</h2>
       {/* // */}
       {/* Name Input */}
