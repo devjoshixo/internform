@@ -6,17 +6,18 @@ import formContext from '../context/FormContext.jsx';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import enLocale from 'date-fns/locale/en-IN';
 import dayjs from 'dayjs';
 
 const form = (props) => {
   const ctx = useContext(formContext);
-  const [error, checkError] = useErrorHandler(ctx.formDetails);
+  const [error, checkError, roleErrorCheck] = useErrorHandler(ctx.formDetails);
 
   //
   ////
   const submitFormDetails = (event) => {
     event.preventDefault();
-    if (checkError(ctx.formDetails, ctx.ticked)) {
+    if (roleErrorCheck(ctx.formDetails)) {
       props.setFormPage(false);
     }
   };
@@ -75,7 +76,7 @@ const form = (props) => {
           value={ctx.formDetails.phone}
           onChange={ctx.changeFormDetails}
           className={`w-full border-b-[5px] bg-form-bg pl-3 focus:border-[#4f62b8] ${
-            error.phone == true ? 'border-error-highlight' : ''
+            error.phone == true ? 'border-error-highlight' : 'border-b-[5px]'
           } outline-none transition duration-200 ease-out md:ease-in`}
         />
         <p className='text-[12px] text-error-highlight font-mono font-thin min-h-3 h-3 max-w-9/12'>
@@ -147,7 +148,7 @@ const form = (props) => {
             type='text'
             placeholder='Portfolio URL'
             name='portfolio'
-            value={ctx.formDetails.experience}
+            value={ctx.formDetails.portfolio}
             onChange={ctx.changeFormDetails}
             className={`w-full border-b-[5px] bg-form-bg pl-3 focus:border-[#4f62b8] ${
               error.portfolio == true ? 'border-error-highlight' : ''
@@ -168,15 +169,15 @@ const form = (props) => {
           <input
             type='text'
             placeholder='Managment Experience (years)'
-            name='experience'
-            value={ctx.formDetails.experience}
+            name='manager'
+            value={ctx.formDetails.manager}
             onChange={ctx.changeFormDetails}
             className={`w-full border-b-[5px] bg-form-bg pl-3 focus:border-[#4f62b8] ${
-              error.experience == true ? 'border-error-highlight' : ''
+              error.manager == true ? 'border-error-highlight' : ''
             } outline-none transition duration-200 ease-out md:ease-in`}
           />
           <p className='text-[12px] text-error-highlight font-mono font-thin min-h-3 h-3 max-w-9/12'>
-            {error.experience ? 'Please provide experience details' : ''}
+            {error.manager ? 'Please provide experience details' : ''}
           </p>
         </div>
       )}
@@ -185,28 +186,60 @@ const form = (props) => {
 
       {/* // */}
       {/* Additional Skills */}
+      {console.log(error)}
       <div className='flex flex-col justify-start w-full gap-1'>
-        <p className='mb-1'>Additional Skills :</p>
-        <div className='flex gap-2 items-center'>
+        <p
+          className={`mb-1 border-b-4 w-1/2 ${
+            error.skills ? 'border-error-highlight' : ''
+          } `}
+        >
+          Additional Skills :
+        </p>
+        <div
+          className='flex gap-2 items-center'
+          onClick={ctx.changeFormSkill}
+          name='Javascript'
+        >
           <input
+            name='Javascript'
             type='checkbox'
             className='rounded w-4 h-4 accent-form-shadow hover:bg-form-shadow'
+            checked={ctx.formDetails.skills.includes('Javascript')}
           />
-          <label className='text-[0.95rem]'>Javascript</label>
+
+          <label name='Javascript' className='text-[0.95rem]'>
+            Javascript
+          </label>
         </div>
-        <div className='flex gap-2 items-center'>
+        <div
+          className='flex gap-2 items-center'
+          onClick={ctx.changeFormSkill}
+          name='CSS'
+        >
           <input
+            name='CSS'
             type='checkbox'
             className='rounded w-4 h-4 accent-form-shadow hover:bg-form-shadow'
+            checked={ctx.formDetails.skills.includes('CSS')}
           />
-          <label className='text-[0.95rem]'>CSS</label>
+          <label className='text-[0.95rem]' name='CSS'>
+            CSS
+          </label>
         </div>
-        <div className='flex gap-2 items-center'>
+        <div
+          className='flex gap-2 items-center'
+          onClick={ctx.changeFormSkill}
+          name='Python'
+        >
           <input
+            name='Python'
             type='checkbox'
+            checked={ctx.formDetails.skills.includes('Python')}
             className='rounded w-4 h-4 accent-form-shadow hover:bg-form-shadow'
           />
-          <label className='text-[0.95rem]'>Python</label>
+          <label className='text-[0.95rem]' name='Python'>
+            Python
+          </label>
         </div>
       </div>
       {/* Additional Skills */}
@@ -214,12 +247,16 @@ const form = (props) => {
 
       {/* // */}
       {/* Interview Time */}
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} locale={'enLocale'}>
         <DateTimePicker
+          name='date'
           className='datepicker'
-          defaultValue={dayjs(new Date())}
           disablePast
-          format='DD/MM/YYYY HH:MM a'
+          value={ctx.formDetails.date}
+          onChange={(event) => {
+            ctx.formDateChanger(event);
+          }}
+          format='DD/MM/YYYY hh:mm a'
         />
       </LocalizationProvider>
       {/* Interview Time */}

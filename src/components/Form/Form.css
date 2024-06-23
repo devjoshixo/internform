@@ -3,6 +3,10 @@
   padding-bottom: 0.3rem;
 }
 
+.datepicker {
+  border: none;
+}
+
 /*  */
 .checkbox-wrapper-12 {
   position: relative;
